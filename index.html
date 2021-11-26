@@ -10,9 +10,6 @@
         html,
         body {
             /* font-family: Arial, Helvetica, sans-serif; */
-            /* display: grid; */
-            /* height: 100%; */
-            /* width: 100%; */
             place-items: center;
             background: linear-gradient(120deg, #2980b9, #8e44ad);
 
@@ -36,13 +33,6 @@
             border: 1px solid lightgrey;
             border-radius: 8px;
         }
-
-        /* Add a background color when the inputs get focus */
-        /* input[type=text]:focus,
-        input[type=password]:focus {
-            background-color: #ddd;
-            outline: none;
-        } */
 
         /* Set a style for all buttons */
         button {
@@ -98,7 +88,6 @@
             overflow: auto;
             /* Enable scroll if needed */
             padding-top: 50px;
-            /* max-width: 390px;    */
 
         }
 
@@ -155,10 +144,10 @@
                 <input type="text" placeholder="Enter Username" name="username" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" minlength="8" maxlength="12" required>
+                <input type="password" id="password" placeholder="Enter Password " onkeyup='check();' name="psw" minlength="8" maxlength="12" required>
 
-                <label for="psw-cnf"><b>Confirm Password</b></label>
-                <input type="password" placeholder="Confirm Password" name="psw-cnf" minlength="8" maxlength="12"
+                <label for="psw-cnf"><b>Confirm Password</b> <span id='message'></span> </label>
+                <input type="password" id="confirm_password" placeholder="Confirm Password" onkeyup='check();' name="psw-cnf" minlength="8" maxlength="12"
                     required>
 
                 <label>
@@ -176,17 +165,21 @@
     </div>
 
     <script>
-        // Get the modal
-        // var modal = document.getElementById('id01');
         function reset() {
             document.getElementById("modal-content").reset();
         }
-        // When the user clicks anywhere outside of the modal, close it
-        // window.onclick = function (event) {
-        //     if (event.target == modal) {
-        //         modal.style.display = "none";
-        //     }
-        // }
+
+        var check = function () {
+            if (document.getElementById('password').value ==
+                document.getElementById('confirm_password').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Matching';
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Not Matching';
+            }
+        }
+
     </script>
 </body>
 
